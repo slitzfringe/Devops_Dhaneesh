@@ -2,25 +2,24 @@ pipeline {
     agent any  // Can run on any available Jenkins agent
 
     stages {
+
         stage('Checkout Code') {
             steps {
-                git branch: 'main', // Adjust branch name if needed
+                git branch: 'master', // Adjust branch name if needed
                    credentialsId: 'slitzfringe',
                    url: 'https://github.com/slitzfringe/Devops_Dhaneesh'
             }
         }
-        stage('Build Docker Image (Optional)') {
-            when {
-                expression { // Run only if Docker Hub is not used
-                    !env.REGISTRY_URL // Check for environment variable
+        stage('Build') {
+            steps {
+                script{
+                    docker.build(
+                        imageName: 'imageName:latest',  // Correct parameter name: imageName
+                        dockerfilePath: 'Dockerfile' // Correct parameter name: dockerfilePath
+                        )
                 }
             }
-            steps {
-                docker.build(
-                    imageName: 'imageName:latest',  // Correct parameter name: imageName
-                    dockerfilePath: '*/Dockerfile' // Correct parameter name: dockerfilePath
-                )
-            }
         }
+
     }
 }
