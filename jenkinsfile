@@ -17,8 +17,8 @@ pipeline {
             }
             steps {
                 docker.build(
-                    imageName: 'anju:latest',  // Correct parameter name: imageName
-                    dockerfilePath: 'Dockerfile' // Correct parameter name: dockerfilePath
+                    imageName: 'imageName:latest',  // Correct parameter name: imageName
+                    dockerfilePath: '*/Dockerfile' // Correct parameter name: dockerfilePath
                 )
             }
         }
