@@ -1,0 +1,56 @@
+{% extends "links/_base.html" %}
+
+ {% block content %}
+
+    {% for link in links %}
+
+    <div class = "border max-w-sm mx-auto rounded-xl px-12 py-8 my-6 hover:bg-sky-100 ">
+    
+        <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
+        
+            <ul>
+      
+                <li>
+      
+                    <div class="text-black font-medium">
+      
+    
+                        {{link.name}}
+      
+    
+                    </div>
+            
+        
+      
+                </li>
+
+      
+
+      
+                <li class="text-sky-500 dark:text-sky-400">
+        
+                    clicks : {{link.clicks}}
+      
+                </li>
+
+                
+              
+                    
+                    <li class="underline underline text-blue-700">
+                    
+                        <a target="_blank" href="{% url 'root-link' link.slug %}">
+    
+                             open/{{link.slug }}->
+                        </a>
+                    </li>
+                
+    
+            </ul>
+
+        </div>
+    
+    </div>
+
+
+  {% endfor %}
+  {% endblock content %}
