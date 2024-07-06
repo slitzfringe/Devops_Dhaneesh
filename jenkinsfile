@@ -3,8 +3,14 @@ pipeline {
 
     stages {
 
+        stage('Starting') {
+            steps {
+                echo 'Stage 1'
+            }
+
         stage('Checkout Code') {
             steps {
+                echo 'At hub Stage',
                 git branch: 'master', // Adjust branch name if needed
                    credentialsId: 'slitzfringe',
                    url: 'https://github.com/slitzfringe/Devops_Dhaneesh'
@@ -12,6 +18,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                echo 'build stage',
                 script{
                     docker.build(
                         imageName: 'imageName:latest',  // Correct parameter name: imageName
