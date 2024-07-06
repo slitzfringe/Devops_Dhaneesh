@@ -22,6 +22,8 @@ pipeline {
                 )
             }
         }
+    }
+}
         // stage('Push Docker Image (Optional)') {
         //     when {
         //         expression { // Run only if Docker Hub is used
@@ -41,6 +43,6 @@ pipeline {
         //     steps {
         //         sh 'python manage.py test'  // Example using manage.py test
             
-            }
-}
+//             }
+// }
         
