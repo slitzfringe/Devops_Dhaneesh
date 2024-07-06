@@ -9,21 +9,29 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                echo 'At hub Stage',
                 git branch: 'master', // Adjust branch name if needed
                    credentialsId: 'slitzfringe',
                    url: 'https://github.com/slitzfringe/Devops_Dhaneesh'
             }
         }
+        stage('x2') {
+            steps {
+                echo 'Stage 2 - Build'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'build stage',
                 script{
                     docker.build(
                         imageName: 'imageName:latest',  // Correct parameter name: imageName
                         dockerfilePath: 'Dockerfile' // Correct parameter name: dockerfilePath
                         )
                 }
+            }
+        }
+        stage('done') {
+            steps {
+                echo 'donen execution dha!'
             }
         }
 
