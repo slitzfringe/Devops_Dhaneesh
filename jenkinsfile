@@ -40,5 +40,7 @@ pipeline {
         //     // Add your Django test commands here (e.g., pytest, manage.py test)
         //     steps {
         //         sh 'python manage.py test'  // Example using manage.py test
-        //     }
+            
+            }
+}
         
