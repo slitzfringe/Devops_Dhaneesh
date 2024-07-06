@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 docker.build(
-                    imageName: 'links:latest', // Adjust image name
+                    imageName: 'anju:latest', // Adjust image name
                     dockerfilePath: 'Dockerfile'
                 )
             }
