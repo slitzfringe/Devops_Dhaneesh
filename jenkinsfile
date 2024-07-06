@@ -1,0 +1,44 @@
+pipeline {
+    agent any  // Can run on any available Jenkins agent
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', // Adjust branch name if needed
+                   credentialsId: 'slitzfringe',
+                   url: 'https://github.com/slitzfringe/Devops_Dhaneesh'
+            }
+        }
+        stage('Build Docker Image (Optional)') {
+            when {
+                expression { // Run only if Docker Hub is not used
+                    !env.REGISTRY_URL // Check for environment variable
+                }
+            }
+            steps {
+                docker.build(
+                    imageName: 'links:latest', // Adjust image name
+                    dockerfilePath: 'Dockerfile'
+                )
+            }
+        }
+        // stage('Push Docker Image (Optional)') {
+        //     when {
+        //         expression { // Run only if Docker Hub is used
+        //             env.REGISTRY_URL // Check for environment variable
+        //         }
+        //     }
+        //     steps {
+        //         script {
+        //             docker.withRegistry(url: env.REGISTRY_URL, credentialsId: 'your-docker-hub-credentials-id') {
+        //                 docker.push('your_username/<your_app_name>') // Adjust image names
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Test (Optional)') {
+        //     // Add your Django test commands here (e.g., pytest, manage.py test)
+        //     steps {
+        //         sh 'python manage.py test'  // Example using manage.py test
+        //     }
+        
