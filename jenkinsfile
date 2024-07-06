@@ -17,32 +17,10 @@ pipeline {
             }
             steps {
                 docker.build(
-                    imageName: 'anju:latest', // Adjust image name
-                    dockerfilePath: 'Dockerfile'
+                    imageName: 'anju:latest',  // Correct parameter name: imageName
+                    dockerfilePath: 'Dockerfile' // Correct parameter name: dockerfilePath
                 )
             }
         }
     }
 }
-        // stage('Push Docker Image (Optional)') {
-        //     when {
-        //         expression { // Run only if Docker Hub is used
-        //             env.REGISTRY_URL // Check for environment variable
-        //         }
-        //     }
-        //     steps {
-        //         script {
-        //             docker.withRegistry(url: env.REGISTRY_URL, credentialsId: 'your-docker-hub-credentials-id') {
-        //                 docker.push('your_username/<your_app_name>') // Adjust image names
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Test (Optional)') {
-        //     // Add your Django test commands here (e.g., pytest, manage.py test)
-        //     steps {
-        //         sh 'python manage.py test'  // Example using manage.py test
-            
-//             }
-// }
-        
